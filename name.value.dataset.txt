@@ -1,0 +1,8 @@
+    Name Value
+1: Susie   400
+2:  John   100
+3:  Mary   200
+4:  Mary   300
+5:  John   100
+6: Susie   100
+7:  Mary   100
