@@ -5,7 +5,7 @@ library("DescTools")
 ## Read in data as data.frame
 ## ems02 <- read.csv("zodiac_ems2/ems02csv.csv")
 
-DT <- fread("zodiac_ems2/ems02csv.csv")
+DT <- fread("ems02csv.csv")
 ## str(DT)
 ## DT <- data.table(ems02)
 
@@ -27,4 +27,4 @@ p <- ggplot(data=DTZQ, aes(x=ZS, y=QTY)) +
     labs(y="",x="")
 
 ## Save plot image
-ggsave(filename="zodiac_ems2/zodiac-en.jpg", plot= p)
+ggsave(filename="zodiac-en.jpg", plot= p); dev.off()
