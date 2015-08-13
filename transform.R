@@ -24,8 +24,7 @@ data_transformed
 
 library(data.table)
 
-dt <- data.table(data)
-setkey(dt, crystal)
+dt <- data.table(data, key="crystal")
 
 data_transformed_dt <- rbind(dt["BCC", .(metalname, radius, crystal, N=2, latticea=4*radius/sqrt(3), latticec=0)],
                              dt['FCC', .(metalname, radius, crystal, N=4, latticea=2*radius*sqrt(2), latticec=0)],
