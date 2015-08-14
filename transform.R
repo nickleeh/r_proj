@@ -9,7 +9,6 @@ data <- data.frame(
 
 data
 
-
 ## Calc lattice parameters (nm)
 data_transformed <- rbind(
     transform(subset(data, crystal=='BCC'), N=2, latticea=4*radius/sqrt(3), latticec=0),
@@ -31,3 +30,16 @@ data_transformed_dt <- rbind(dt["BCC", .(metalname, radius, crystal, N=2, lattic
                              dt['HCP', .(metalname, radius, crystal, N=6, latticea=2*radius, latticec=4*radius*sqrt(2/3))])
 
 data_transformed_dt
+
+### ----------------------
+### data.table, improved by Arun:
+# v1.9.5+, for new feature "on = ", See github project page
+require(data.table) 
+key = data.table(crystal = c("BCC", "FCC", "HCP"), 
+                 latticea = c(4/sqrt(3), 2*sqrt(2), 2),
+                 latticec=c(0,0,4*sqrt(2/3)), 
+                 N = c(2,4,6))
+
+setDT(data)[key , c("latticea", "latticec", "N") := 
+                  .(radius * latticea, radius * latticec, N), 
+              on = "crystal"][]
